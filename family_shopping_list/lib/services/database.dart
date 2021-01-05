@@ -1,31 +1,29 @@
 import 'package:family_shopping_list/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:family_shopping_list/models/brew.dart';
+import 'package:family_shopping_list/models/shopping_list.dart';
 
 class DatabaseService {
   final String uid;
   DatabaseService({this.uid});
 
   // Collection reference
-  final CollectionReference brewCollection =
-      Firestore.instance.collection('brews');
+  final CollectionReference shoppingListCollection =
+      Firestore.instance.collection('shopping_lists');
 
   /// Update the user's data.
-  Future updateUserData(String sugars, String name, int strength) async {
-    return await brewCollection.document(uid).setData({
-      'sugars': sugars,
+  Future updateUserData(String name, String shoppingList) async {
+    return await shoppingListCollection.document(uid).setData({
       'name': name,
-      'strength': strength,
+      'shoppingList': shoppingList,
     });
   }
 
-  /// Brew list from snapshot.
-  List<Brew> _brewListFromSnapshot(QuerySnapshot snapshot) {
+  /// ShoppingList from snapshot.
+  List<ShoppingList> _shoppingListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {
-      return Brew(
+      return ShoppingList(
         name: doc.data['name'] ?? '',
-        sugars: doc.data['sugars'] ?? '',
-        strength: doc.data['strength'] ?? '',
+        shoppingList: doc.data['shoppingList'] ?? '',
       );
     }).toList();
   }
@@ -35,18 +33,20 @@ class DatabaseService {
     return UserData(
       uid: uid,
       name: snapshot.data['name'],
-      strength: snapshot.data['strength'],
-      sugars: snapshot.data['sugars'],
+      shoppingList: snapshot.data['shoppingList'],
     );
   }
 
-  /// Get brews stream.
-  Stream<List<Brew>> get brews {
-    return brewCollection.snapshots().map(_brewListFromSnapshot);
+  /// Get shoppingList stream.
+  Stream<List<ShoppingList>> get shoppingList {
+    return shoppingListCollection.snapshots().map(_shoppingListFromSnapshot);
   }
 
   /// Get user doc stream.
   Stream<UserData> get userData {
-    return brewCollection.document(uid).snapshots().map(_userDataFromSnapshot);
+    return shoppingListCollection
+        .document(uid)
+        .snapshots()
+        .map(_userDataFromSnapshot);
   }
 }

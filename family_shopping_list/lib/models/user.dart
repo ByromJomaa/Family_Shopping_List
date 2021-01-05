@@ -7,8 +7,7 @@ class User {
 class UserData {
   final String uid;
   final String name;
-  final String sugars;
-  final int strength;
+  final String shoppingList;
 
-  UserData({this.name, this.strength, this.sugars, this.uid});
+  UserData({this.name, this.shoppingList, this.uid});
 }

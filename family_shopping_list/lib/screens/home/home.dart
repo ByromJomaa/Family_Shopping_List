@@ -1,10 +1,10 @@
-import 'package:family_shopping_list/models/brew.dart';
+import 'package:family_shopping_list/models/shopping_list.dart';
 import 'package:family_shopping_list/screens/home/settings_form.dart';
 import 'package:family_shopping_list/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:family_shopping_list/services/database.dart';
 import 'package:provider/provider.dart';
-import 'package:family_shopping_list/screens/home/brew_list.dart';
+import 'package:family_shopping_list/screens/home/shopping_list_list.dart';
 
 class Home extends StatelessWidget {
   final AuthService _auth = AuthService();
@@ -22,8 +22,8 @@ class Home extends StatelessWidget {
           });
     }
 
-    return StreamProvider<List<Brew>>.value(
-      value: DatabaseService().brews,
+    return StreamProvider<List<ShoppingList>>.value(
+      value: DatabaseService().shoppingList,
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -57,7 +57,7 @@ class Home extends StatelessWidget {
           //     fit: BoxFit.cover,
           //   ),
           // ),
-          child: BrewList(),
+          child: ShoppingListList(),
         ),
       ),
     );
