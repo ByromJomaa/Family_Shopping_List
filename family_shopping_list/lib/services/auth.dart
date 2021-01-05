@@ -17,6 +17,7 @@ class AuthService {
 
   /// Sign in anom.
   /// Returns null on fail.
+  /// Only used for testing.
   Future signInAnon() async {
     try {
       AuthResult result = await _auth.signInAnonymously();
