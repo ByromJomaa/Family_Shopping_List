@@ -29,11 +29,17 @@ class _SignInState extends State<SignIn> {
     return loading
         ? Loading()
         : Scaffold(
-            backgroundColor: Colors.blue[100],
+            backgroundColor: Colors.indigo[50],
             appBar: AppBar(
               backgroundColor: Colors.blue[300],
               elevation: 0.0,
-              title: Text('Sign in to Family Shopping List'),
+              toolbarHeight: 70.0,
+              title: Text(
+                'Family Shopping List',
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
               actions: <Widget>[
                 FlatButton.icon(
                   icon: Icon(Icons.person),
@@ -51,6 +57,15 @@ class _SignInState extends State<SignIn> {
                 child: Column(
                   children: <Widget>[
                     SizedBox(height: 20.0),
+                    Text(
+                      'Sign in',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 30.0),
                     TextFormField(
                       decoration:
                           textInputDecoration.copyWith(hintText: 'Email'),
@@ -77,7 +92,7 @@ class _SignInState extends State<SignIn> {
                     ),
                     SizedBox(height: 20.0),
                     RaisedButton(
-                      color: Colors.pink[400],
+                      color: Colors.blue[500],
                       child: Text('Sign in',
                           style: TextStyle(color: Colors.white)),
                       onPressed: () async {
