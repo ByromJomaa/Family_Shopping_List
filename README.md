@@ -6,4 +6,5 @@ from other family members and to make requests of their own. Built with mostly g
 ## About
 
 Uses the Firestore service of Google Firebase to store individual shopping lists for each user. 
-Firebase is also used for user authentication.
+Firebase is also used for user authentication. You will need to use your own package name and your
+own google-services.json file to use the Firebase functionality of this app.
