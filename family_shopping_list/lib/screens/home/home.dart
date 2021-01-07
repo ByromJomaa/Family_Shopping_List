@@ -16,6 +16,12 @@ class Home extends StatelessWidget {
     void _showSettingsPanel() {
       showModalBottomSheet(
         context: context,
+        enableDrag: true,
+        isDismissible: true,
+        isScrollControlled: true,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(5.0)),
+        ),
         builder: (context) {
           return Container(
             padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
