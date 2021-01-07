@@ -1,6 +1,6 @@
 import 'package:family_shopping_list/services/auth.dart';
 import 'package:family_shopping_list/shared/constants.dart';
-import 'package:family_shopping_list/shared/loading.dart';
+import 'package:family_shopping_list/shared/loading-with-background.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {
@@ -33,7 +33,7 @@ class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     return loading
-        ? Loading()
+        ? LoadingWithBackground()
         : Scaffold(
             backgroundColor: Colors.indigo[50],
             appBar: AppBar(
