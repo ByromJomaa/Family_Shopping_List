@@ -14,7 +14,6 @@ class SettingsForm extends StatefulWidget {
 
 class _SettingsFormState extends State<SettingsForm> {
   final _formKey = GlobalKey<FormState>();
-  //final List<String> sugars = ['0', '1', '2', '3', '4'];
 
   // Form values.
   String _currentName;

@@ -9,6 +9,7 @@ class Wrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Stream of User objects.
     final user = Provider.of<User>(context);
 
     // Return either Home or Authenticate screens.

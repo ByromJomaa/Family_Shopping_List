@@ -9,13 +9,17 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    // The root of the app widget tree.
     return StreamProvider<User>.value(
+      // The StreamProvider should provide User objects
+      // to sub widgets.
       value: AuthService().user,
       child: MaterialApp(
         title: 'Family Shopping List',
+        // The Wrapper widget which returns either the
+        // authentication page or the home page.
         home: Wrapper(),
       ),
     );

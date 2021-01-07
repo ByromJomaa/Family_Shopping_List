@@ -7,21 +7,25 @@ import 'package:provider/provider.dart';
 import 'package:family_shopping_list/screens/home/shopping_list_list.dart';
 
 class Home extends StatelessWidget {
+  // The Firebase auth service.
   final AuthService _auth = AuthService();
 
   @override
   Widget build(BuildContext context) {
+    // Builds the settings panel.
     void _showSettingsPanel() {
       showModalBottomSheet(
-          context: context,
-          builder: (context) {
-            return Container(
-              padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
-              child: SettingsForm(),
-            );
-          });
+        context: context,
+        builder: (context) {
+          return Container(
+            padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
+            child: SettingsForm(),
+          );
+        },
+      );
     }
 
+    // The home page widget tree.
     return StreamProvider<List<ShoppingList>>.value(
       value: DatabaseService().shoppingList,
       child: Scaffold(

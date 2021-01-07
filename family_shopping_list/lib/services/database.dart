@@ -3,10 +3,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:family_shopping_list/models/shopping_list.dart';
 
 class DatabaseService {
+  // The uid of the user accessing the database.
   final String uid;
+
+  // Constructor.
   DatabaseService({this.uid});
 
-  // Collection reference
+  // The Firestore collection.
   final CollectionReference shoppingListCollection =
       Firestore.instance.collection('shopping_lists');
 
@@ -37,12 +40,12 @@ class DatabaseService {
     );
   }
 
-  /// Get shoppingList stream.
+  /// Get ShoppingList objects from stream.
   Stream<List<ShoppingList>> get shoppingList {
     return shoppingListCollection.snapshots().map(_shoppingListFromSnapshot);
   }
 
-  /// Get user doc stream.
+  /// Get UserData objects from stream.
   Stream<UserData> get userData {
     return shoppingListCollection
         .document(uid)
