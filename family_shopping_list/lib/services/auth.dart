@@ -6,6 +6,7 @@ class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   /// Create User object based on FirebaseUser.
+  /// Will return null if FirebaseUser is null.
   User _userFromFirebaseUser(FirebaseUser user) {
     return user != null ? User(uid: user.uid) : null;
   }
@@ -17,6 +18,7 @@ class AuthService {
 
   /// Sign in anom.
   /// Returns null on fail.
+  /// Only used for testing.
   Future signInAnon() async {
     try {
       AuthResult result = await _auth.signInAnonymously();
@@ -51,8 +53,7 @@ class AuthService {
       FirebaseUser user = result.user;
 
       // Create a new document for the user with the uid.
-      await DatabaseService(uid: user.uid)
-          .updateUserData('0', 'new crew member', 100);
+      await DatabaseService(uid: user.uid).updateUserData('Your Name', 'Empty');
 
       return _userFromFirebaseUser(user);
     } catch (e) {

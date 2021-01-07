@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 class SignIn extends StatefulWidget {
   final Function toggleView;
 
+  // Constructor.
   SignIn({this.toggleView});
 
   @override
@@ -13,7 +14,10 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+  // The Firebase auth service.
   final AuthService _auth = AuthService();
+
+  // The register form key.
   final _formKey = GlobalKey<FormState>();
 
   // Show loading screen.
@@ -22,6 +26,8 @@ class _SignInState extends State<SignIn> {
   // Text field state.
   String email = '';
   String password = '';
+
+  // Error text state.
   String error = '';
 
   @override

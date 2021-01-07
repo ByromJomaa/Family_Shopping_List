@@ -1,29 +1,33 @@
-import 'package:family_shopping_list/models/brew.dart';
+import 'package:family_shopping_list/models/shopping_list.dart';
 import 'package:family_shopping_list/screens/home/settings_form.dart';
 import 'package:family_shopping_list/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:family_shopping_list/services/database.dart';
 import 'package:provider/provider.dart';
-import 'package:family_shopping_list/screens/home/brew_list.dart';
+import 'package:family_shopping_list/screens/home/shopping_list_list.dart';
 
 class Home extends StatelessWidget {
+  // The Firebase auth service.
   final AuthService _auth = AuthService();
 
   @override
   Widget build(BuildContext context) {
+    // Builds the settings panel.
     void _showSettingsPanel() {
       showModalBottomSheet(
-          context: context,
-          builder: (context) {
-            return Container(
-              padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
-              child: SettingsForm(),
-            );
-          });
+        context: context,
+        builder: (context) {
+          return Container(
+            padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
+            child: SettingsForm(),
+          );
+        },
+      );
     }
 
-    return StreamProvider<List<Brew>>.value(
-      value: DatabaseService().brews,
+    // The home page widget tree.
+    return StreamProvider<List<ShoppingList>>.value(
+      value: DatabaseService().shoppingList,
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -57,7 +61,7 @@ class Home extends StatelessWidget {
           //     fit: BoxFit.cover,
           //   ),
           // ),
-          child: BrewList(),
+          child: ShoppingListList(),
         ),
       ),
     );

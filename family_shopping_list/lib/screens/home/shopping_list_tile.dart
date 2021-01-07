@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:family_shopping_list/models/brew.dart';
+import 'package:family_shopping_list/models/shopping_list.dart';
 
-class BrewTile extends StatelessWidget {
-  final Brew brew;
-  BrewTile({this.brew});
+class ShoppingListTile extends StatelessWidget {
+  final ShoppingList shoppingList;
+  ShoppingListTile({this.shoppingList});
 
   @override
   Widget build(BuildContext context) {
@@ -14,11 +14,10 @@ class BrewTile extends StatelessWidget {
         child: ListTile(
           leading: CircleAvatar(
             radius: 25.0,
-            backgroundColor: Colors.brown[brew.strength],
-            backgroundImage: AssetImage('assets/coffee_icon.png'),
+            backgroundColor: Colors.blue,
           ),
-          title: Text(brew.name),
-          subtitle: Text('Takes ${brew.sugars} sugar(s)'),
+          title: Text(shoppingList.name),
+          subtitle: Text('${shoppingList.shoppingList}'),
         ),
       ),
     );

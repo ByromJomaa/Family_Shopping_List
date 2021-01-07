@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 class Register extends StatefulWidget {
   final Function toggleView;
 
+  // Constructor.
   Register({this.toggleView});
 
   @override
@@ -13,13 +14,20 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+  // The Firebase auth service.
   final AuthService _auth = AuthService();
+
+  // The register form key.
   final _formKey = GlobalKey<FormState>();
+
+  // Show loading screen.
   bool loading = false;
 
   // Text field state.
   String email = '';
   String password = '';
+
+  // Error text state.
   String error = '';
 
   @override

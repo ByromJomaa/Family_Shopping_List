@@ -14,12 +14,10 @@ class SettingsForm extends StatefulWidget {
 
 class _SettingsFormState extends State<SettingsForm> {
   final _formKey = GlobalKey<FormState>();
-  final List<String> sugars = ['0', '1', '2', '3', '4'];
 
   // Form values.
   String _currentName;
-  String _currentSugars;
-  String _currentStrength;
+  String _currentShoppingList;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +33,7 @@ class _SettingsFormState extends State<SettingsForm> {
               child: Column(
                 children: <Widget>[
                   Text(
-                    'Update your brew settings.',
+                    'Update your shopping list.',
                     style: TextStyle(fontSize: 18.0),
                   ),
                   SizedBox(height: 20.0),
@@ -47,30 +45,7 @@ class _SettingsFormState extends State<SettingsForm> {
                     onChanged: (val) => setState(() => _currentName = val),
                   ),
                   SizedBox(height: 20.0),
-                  DropdownButtonFormField(
-                    decoration: textInputDecoration,
-                    value: _currentSugars ?? userData.sugars,
-                    items: sugars.map((sugar) {
-                      return DropdownMenuItem(
-                        value: sugar,
-                        child: Text('$sugar sugars'),
-                      );
-                    }).toList(),
-                    onChanged: (val) => setState(() => _currentSugars = val),
-                  ),
-                  Slider(
-                    value: double.parse(
-                        _currentStrength ?? userData.strength.toString()),
-                    activeColor: Colors.brown[int.parse(
-                        _currentStrength ?? userData.strength.toString())],
-                    inactiveColor: Colors.brown[int.parse(
-                        _currentStrength ?? userData.strength.toString())],
-                    min: 100,
-                    max: 900,
-                    divisions: 8,
-                    onChanged: (val) => setState(
-                        () => _currentStrength = val.round().toString()),
-                  ),
+                  // Insert input here for shopping list items.
                   RaisedButton(
                     color: Colors.pink,
                     child: Text(
@@ -80,9 +55,8 @@ class _SettingsFormState extends State<SettingsForm> {
                     onPressed: () async {
                       if (_formKey.currentState.validate()) {
                         await DatabaseService(uid: user.uid).updateUserData(
-                            _currentSugars ?? userData.sugars,
                             _currentName ?? userData.name,
-                            int.parse(_currentStrength ?? userData.strength));
+                            _currentShoppingList ?? userData.shoppingList);
                         Navigator.pop(context);
                       }
                     },
