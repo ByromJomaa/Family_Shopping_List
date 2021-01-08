@@ -76,10 +76,10 @@ class Home extends StatelessWidget {
                   children: <Widget>[
                     SizedBox(height: 25.0),
                     Text(
-                      '  Family Shopping List',
+                      'Family Shopping List',
                       style: TextStyle(
-                        fontSize: 30.0,
-                        fontWeight: FontWeight.bold,
+                        fontSize: 24.0,
+                        fontWeight: FontWeight.w300,
                       ),
                     ),
                     SizedBox(height: 20.0),
